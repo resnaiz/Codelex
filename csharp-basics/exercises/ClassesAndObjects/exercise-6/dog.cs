@@ -2,40 +2,40 @@
 {
     public class Dog
     {
-        public string Name { get; set; }
-        public string Sex { get; set; }
-        public string Mother { get; set; }
-        public string Father { get; set; }
+        private string _name { get; set; }
+        private string _sex { get; set; }
+        private string _mother { get; set; }
+        private string _father { get; set; }
 
         public Dog(string name, string sex)
         {
-            Name = name;
-            Sex = sex;
+            _name = name;
+            _sex = sex;
         }
 
         public void SetMother(string mother)
         {
-            Mother = mother;
+            _mother = mother;
         }
 
         public void SetFather(string father)
         {
-            Father = father;
+            _father = father;
         }
 
         public bool HasSameMotherAs(Dog otherDog)
         {
-            return otherDog.Mother == Mother;
+            return otherDog._mother == _mother;
         }
 
         public string FathersName()
         {
-            if (Father == null)
+            if (_father == null)
             {
                 return "Unknown";
             }
 
-            return Father;
+            return _father;
         }
     }
 }
