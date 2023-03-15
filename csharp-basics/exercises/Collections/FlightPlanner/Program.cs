@@ -24,55 +24,52 @@ namespace FlightPlanner
 
             if(userInput == "1")
             {
-                Console.WriteLine("To select the starting city press 1");
-                var otherUserInput = Console.ReadLine();
+                Console.WriteLine("To select the starting city press enter");
+                Console.ReadKey();
 
-                if (otherUserInput == "1")
+                foreach (var flight in readText)
                 {
-                    foreach (var flight in readText)
+                    string[] cityInfo = flight.Split('-');
+
+                    string selectedCity = cityInfo[0].Trim();
+
+                    flightInfo.Add(selectedCity);
+                }
+
+                Console.WriteLine(string.Join(", ", flightInfo.Distinct()));
+
+                var startingPoint = "";
+                List<string> dest = new List<string>();
+
+                while (!returnStartingPoint)
+                {
+                    Console.WriteLine("From where?");
+                    var cityName = Console.ReadLine();
+
+                    if (string.IsNullOrEmpty(startingPoint))
                     {
-                        string[] cityInfo = flight.Split('-');
-
-                        string selectedCity = cityInfo[0].Trim();
-
-                        flightInfo.Add(selectedCity);
+                        startingPoint = cityName;
                     }
 
-                    Console.WriteLine(string.Join(", ", flightInfo.Distinct()));
+                    dest.Add(cityName);
 
-                    var startingPoint = "";
-                    List<string> dest = new List<string>();
-
-                    while (!returnStartingPoint)
+                    if (startingPoint == dest.Last() && dest.Count() > 1)
                     {
-                        Console.WriteLine("From where?");
-                        var cityName = Console.ReadLine();
+                        returnStartingPoint = true;
+                        break;
+                    }
 
-                        if (string.IsNullOrEmpty(startingPoint))
+                    Console.WriteLine($"Destinations from {cityName}- ");
+
+                    foreach (var flight in readText)
+                    {
+                        string[] flightRoute = flight.Split(new char[] { '-', '>' });
+                        string selectedC = flightRoute[0].Trim();
+                        string to = flightRoute[flightRoute.Length - 1].Trim();
+
+                        if (selectedC == cityName)
                         {
-                            startingPoint = cityName;
-                        }
-
-                        dest.Add(cityName);
-
-                        if (startingPoint == dest.Last() && dest.Count() > 1)
-                        {
-                            returnStartingPoint = true;
-                            break;
-                        }
-
-                        Console.WriteLine($"Destinations from {cityName}- ");
-
-                        foreach (var flight in readText)
-                        {
-                            string[] flightRoute = flight.Split(new char[] { '-', '>' });
-                            string selectedC = flightRoute[0].Trim();
-                            string to = flightRoute[flightRoute.Length - 1].Trim();
-
-                            if (selectedC == cityName)
-                            {
-                                Console.WriteLine(to);
-                            }
+                            Console.WriteLine(to);
                         }
                     }
                 }
