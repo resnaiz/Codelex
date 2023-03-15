@@ -1,41 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace exercise_3
+﻿namespace exercise_3
 {
     internal class Odometer
     {
-        public int currentMileage;
+        private int _currentMileage;
         public FuelGauge fuelGauge;
 
         public Odometer()
         {
-            currentMileage = 0;
+            _currentMileage = 0;
             fuelGauge = new FuelGauge();
         }
 
         public int GetMileage()
         {
-            return currentMileage;
+            return _currentMileage;
         }
 
         public void IncreaseMileage()
         {
-            if(currentMileage < 999999)
+            if(_currentMileage < 999999)
             {
-                currentMileage++;
+                _currentMileage++;
                 
-                if(currentMileage % 10 == 0)
+                if(_currentMileage % 10 == 0)
                 {
                     fuelGauge.FuelLow();
                 }
             }
             else
             {
-                currentMileage = 0;
+                _currentMileage = 0;
             }
         }
     }
