@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace VideoStore
 {
     class Video
     {
-        public string _VideoTitle { get; set; }
+        private string _videoTitle { get; set; }
         private bool _checkedOut { get; set; }
         private List<int> _videoRatings = new List<int>();
 
         public Video(string title)
         {
-            _VideoTitle = title;
+            _videoTitle = title;
             _checkedOut = false;
         }
 
@@ -48,7 +47,7 @@ namespace VideoStore
             return !_checkedOut;
         }
 
-        public string Title => _VideoTitle;
+        public string Title => _videoTitle;
 
         public override string ToString()
         {
