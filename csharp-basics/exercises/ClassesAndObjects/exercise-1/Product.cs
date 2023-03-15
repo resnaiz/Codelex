@@ -1,38 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace exercise_1
 {
     internal class Product
     {
-        double price { get; set; }
-        int amount { get; set; }
-        string name { get; set; }
+        private double _price { get; set; }
+        private int _amount { get; set; }
+        private string _name { get; set; }
 
         public Product(string name, double priceAtStart, int amountAtStart)
         {
-            this.price = priceAtStart;
-            this.amount = amountAtStart;
-            this.name = name;
+            _price = priceAtStart;
+            _amount = amountAtStart;
+            _name = name;
         }
 
         public void PrintProduct()
         {
-            string printedText = string.Format("{0}, price {1}, amount {2}", name, price, amount);
+            string printedText = string.Format("{0}, price {1}, amount {2}", _name, _price, _amount);
             Console.WriteLine(printedText);
         }
 
         public void AmountChange(int newAmount)
         {
-            amount = newAmount;
+            _amount = newAmount;
         }
 
         public void PriceChanged(double newPrice)
         {
-            price = newPrice;
+            _price = newPrice;
         }
     }
 }
