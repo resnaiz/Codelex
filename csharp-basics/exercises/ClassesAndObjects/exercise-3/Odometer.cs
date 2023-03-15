@@ -3,12 +3,12 @@
     internal class Odometer
     {
         private int _currentMileage;
-        public FuelGauge fuelGauge;
+        public FuelGauge _fuelGauge;
 
         public Odometer()
         {
             _currentMileage = 0;
-            fuelGauge = new FuelGauge();
+            _fuelGauge = new FuelGauge();
         }
 
         public int GetMileage()
@@ -24,13 +24,23 @@
                 
                 if(_currentMileage % 10 == 0)
                 {
-                    fuelGauge.FuelLow();
+                    _fuelGauge.FuelLow();
                 }
             }
             else
             {
                 _currentMileage = 0;
             }
+        }
+
+        public void RefuelLimit()
+        {
+            _fuelGauge.RefuelLimit();
+        }
+
+        public int GetFuelAmount()
+        {
+            return _fuelGauge.GetFuelAmount();
         }
     }
 }
