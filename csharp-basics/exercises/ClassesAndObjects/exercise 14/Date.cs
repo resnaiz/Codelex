@@ -1,27 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace exercise_14
 {
     internal class Date
     {
-        int year;
-        int month;
-        int day;
+        private int _year;
+        private int _month;
+        private int _day;
 
         public Date(int yearInfo, int monthInfo, int dayInfo)
         {
-            this.year = yearInfo;
-            this.month = monthInfo;
-            this.day = dayInfo;
+            _year = yearInfo;
+            _month = monthInfo;
+            _day = dayInfo;
         }
 
         public string WeekdayInDutch()
         {
-            DateTime dateTime = new DateTime(year, month, day);
+            DateTime dateTime = new DateTime(_year, _month, _day);
             return dateTime.ToString("dddd", new System.Globalization.CultureInfo("nl-NL"));
         }
     }
