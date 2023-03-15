@@ -1,28 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace exercise_4
 {
     internal class Movie
     {
-        public string title;
-        public string studio;
-        public string rating;
+        private string _title;
+        private string _studio;
+        private string _rating;
 
         public Movie(string movieTitle, string movieStudio, string movieRating)
         {
-            this.title = movieTitle;
-            this.studio = movieStudio;
-            this.rating = movieRating;
+            _title = movieTitle;
+            _studio = movieStudio;
+            _rating = movieRating;
         }
 
         public Movie(string movieTitle, string movieStudio)
         {
-            this.title = movieTitle;
-            this.studio = movieStudio;
+            _title = movieTitle;
+            _studio = movieStudio;
         }
 
         public static Movie[] GetPG(Movie[] movies)
@@ -32,10 +28,11 @@ namespace exercise_4
 
             foreach(Movie oneMovie in movies)
             {
-                if(oneMovie.rating == "PG")
+                if(oneMovie._rating == "PG")
                 {
                     moviesWithPG[counter] = oneMovie;
                     counter++;
+                    Console.WriteLine("{0}, {1}, {2}", oneMovie._title, oneMovie._studio, oneMovie._rating);
                 }
             }
 
