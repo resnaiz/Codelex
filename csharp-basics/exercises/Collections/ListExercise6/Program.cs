@@ -7,7 +7,7 @@ namespace ListExercise6
     {
         static void Main(string[] args)
         {
-            List<string> colors = new List<string>
+            var colors = new List<string>
             {
                 "Red",
                 "Green",
