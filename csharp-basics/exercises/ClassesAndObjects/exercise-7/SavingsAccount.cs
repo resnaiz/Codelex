@@ -1,46 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace exercise_7
+﻿namespace exercise_7
 {
     class SavingsAccount
     {
-        private double rate;
-        private double balance;
+        private double _rate;
+        private double _balance;
 
         public SavingsAccount(double amountOfBalance)
         {
-            this.balance = amountOfBalance;
+            _balance = amountOfBalance;
         }
 
         public void SubtractingAmountOfDeposit(double amount)
         {
-            this.balance -= amount;
+            _balance -= amount;
         }
 
         public void AddingAmountOfDeposit(double amount)
         {
-            this.balance += amount;
+            _balance += amount;
         }
 
         public void AddingAmountOfInterest()
         {
-            double interestRate = rate / 12;
-            double interest = balance * interestRate;
-            balance += interest;
+            double interestRate = _rate / 12;
+            double interest = _balance * interestRate;
+            _balance += interest;
         }
 
         public double GetBalance()
         {
-            return balance;
+            return _balance;
         }
 
         public void SetInterestRate(double rate)
         {
-            this.rate = rate;
+            _rate = rate;
         }
     }
 }
