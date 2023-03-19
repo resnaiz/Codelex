@@ -14,7 +14,7 @@ namespace exercise_12
 
         public Student()
         {
-            this.TestsTaken = new string[] { "No tests taken" };
+            TestsTaken = new string[] { "No tests taken" };
         }
 
         public void TakeTest(ITestpaper paper, string[] answers)

@@ -15,9 +15,9 @@
         
         public Testpaper(string subject, string[] markScheme, string passMark)
         {
-            this.Subject = subject;
-            this.MarkScheme = markScheme;
-            this.PassMark = passMark;
+            Subject = subject;
+            MarkScheme = markScheme;
+            PassMark = passMark;
         }
     }
 
