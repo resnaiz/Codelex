@@ -12,7 +12,7 @@ namespace exercise_12
 
             Student student1 = new Student();
             Student student2 = new Student();
-
+            
             Console.WriteLine(string.Join(", ", student1.TestsTaken));
             student1.TakeTest(paper1, new string[] { "1A", "2D", "3D", "4A", "5A" });
             Console.WriteLine(string.Join(", ", student1.TestsTaken));

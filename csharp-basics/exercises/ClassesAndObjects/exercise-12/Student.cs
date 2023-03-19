@@ -2,12 +2,6 @@
 
 namespace exercise_12
 {
-    interface IStudent
-    {
-        string[] TestsTaken { get; set; }
-        void TakeTest(ITestpaper paper, string[] answers);
-    }
-
     class Student :IStudent
     {
         public string[] TestsTaken { get; set; }
@@ -37,6 +31,7 @@ namespace exercise_12
             if (TestsTaken[0] == "No tests taken")
             {
                 TestsTaken[0] = resultFormat;
+                Console.WriteLine(string.Join(", ", TestsTaken));
             }
             else
             {
