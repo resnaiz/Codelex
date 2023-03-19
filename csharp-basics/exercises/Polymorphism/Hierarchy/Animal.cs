@@ -9,10 +9,10 @@
 
         public Animal(string animalType, string animalName, double animalWeight, int foodEaten) 
         {
-            this.AnimalType = animalType;
-            this.AnimalWeight = animalWeight;
-            this.AnimalName = animalName;
-            this.FoodEaten = foodEaten;
+            AnimalType = animalType;
+            AnimalWeight = animalWeight;
+            AnimalName = animalName;
+            FoodEaten = foodEaten;
         }
 
         public abstract void MakeSound();
