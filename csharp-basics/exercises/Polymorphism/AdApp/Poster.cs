@@ -2,13 +2,13 @@
 {
     public class Poster : Advert
     {
-        private int _dim;
+        private int _dimension;
         private int _copies;
         private int _costPerCopy;
 
-        public Poster(int fee, int dim, int cop, int costPerCopy) : base(fee)
+        public Poster(int fee, int dimensions, int cop, int costPerCopy) : base(fee)
         {
-            _dim = dim;
+            _dimension = dimensions;
             _copies = cop;
             _costPerCopy = costPerCopy;     
         }
