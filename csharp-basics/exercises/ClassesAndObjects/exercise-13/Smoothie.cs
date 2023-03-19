@@ -8,7 +8,7 @@ namespace exercise_13
 
         public Smoothie(string[] ingredients)
         {
-            this.Ingredients = ingredients;
+            Ingredients = ingredients;
         }
 
         public double GetCost()

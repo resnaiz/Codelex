@@ -4,9 +4,9 @@ namespace exercise_1
 {
     internal class Product
     {
-        private double _price { get; set; }
-        private int _amount { get; set; }
-        private string _name { get; set; }
+        private double _price;
+        private int _amount;
+        private string _name; 
 
         public Product(string name, double priceAtStart, int amountAtStart)
         {

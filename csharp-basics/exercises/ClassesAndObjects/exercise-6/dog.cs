@@ -2,10 +2,10 @@
 {
     public class Dog
     {
-        private string _name { get; set; }
-        private string _sex { get; set; }
-        private string _mother { get; set; }
-        private string _father { get; set; }
+        private string _name;
+        private string _sex;
+        private string _mother;
+        private string _father;
 
         public Dog(string name, string sex)
         {
