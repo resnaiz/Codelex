@@ -5,8 +5,8 @@ namespace VideoStore
 {
     class Video
     {
-        private string _videoTitle { get; set; }
-        private bool _checkedOut { get; set; }
+        private string _videoTitle;
+        private bool _checkedOut;
         private List<int> _videoRatings = new List<int>();
 
         public Video(string title)
