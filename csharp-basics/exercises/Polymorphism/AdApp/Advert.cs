@@ -26,7 +26,7 @@ namespace AdApp
 
         public override string ToString() 
         {
-            return "\nAdvert: £" + Cost();
+            return "\nAdvert: £ " + Cost();
         }
     }
 }
