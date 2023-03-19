@@ -43,9 +43,9 @@ namespace VendingMachine
             }
 
             Console.WriteLine($"Buying {products[numberChoose].Name}...");
-            bool buy = newVending.Buy(numberChoose);
+            bool shouldBuy = newVending.Buy(numberChoose);
 
-            if (buy)
+            if (shouldBuy)
             {
                 Console.WriteLine($"{products[numberChoose].Name} successfully purchased.");
             }
