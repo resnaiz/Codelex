@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace VendingMachine
 {
@@ -7,6 +8,7 @@ namespace VendingMachine
         private string _manufacturerName;
         private Product[] _products;
         private Money _moneyAmount;
+        private bool _hasProducts;
 
         public VendingMachine(string manufacturerName, Product[] products)
         {
@@ -19,20 +21,19 @@ namespace VendingMachine
             get { return _manufacturerName; }
         }
 
-        public bool HasProducts
-        {
-            get
-            {
-                foreach(Product product in _products)
-                {
-                    if(product.Available > 0)
-                    {
-                        return true;
-                    }
-                }
+        bool IVendingMachine.HasProducts => _hasProducts;
 
-                return false;
+        public bool HasProducts()
+        {
+            foreach(Product product in _products)
+            {
+                if(product.Available > 0)
+                {
+                    return true;
+                }
             }
+
+            throw new ExceptionProductOutOfStock();
         }
 
         public Money Amount
@@ -56,7 +57,11 @@ namespace VendingMachine
                 _moneyAmount.Euros = euros;
                 _moneyAmount.Cents = cents;
             }
-
+            else
+            {
+                throw new ExceptionInvalidCoin();
+            }
+            
             return _moneyAmount;
         }
 
@@ -67,30 +72,33 @@ namespace VendingMachine
             return new Money { Euros = returnMoney.Euros, Cents = returnMoney.Cents };
         }
 
-        private bool ValidatePrice(Money price)
+        public bool ValidatePrice(Money price)
         {
             if(price.Euros < 0 || price.Cents < 0 || price.Cents >= 100)
             {
-                return false;
+                throw new ExceptionInvalidPriceFound();
             }
-            else
-            {
-                return true;
-            }
+            
+            return true; 
         }
 
         public bool AddProduct(string productName, Money price, int productsCount)
         {
-            for(int i = 0; i < _products.Length; i++)
+            if (string.IsNullOrWhiteSpace(productName) || productsCount <= 0 || !ValidatePrice(price))
             {
-                if (_products == null)
+                throw new ExceptionInvalidInputGivenAddProducts();
+            }
+            
+            for (int i = 0; i < _products.Length; i++)
+            {
+                if (_products[i].Available == 0)
                 {
                     _products[i] = new Product { Name = productName, Price = price, Available = productsCount };
                     return true;
                 }
             }
 
-            return false;
+            throw new ExceptionProductOutOfStock();
         }
 
         public bool UpdateProduct(int oneProduct, string productName, Money? price, int amount)
@@ -116,12 +124,17 @@ namespace VendingMachine
             }
             else
             {
-                return false;
+                throw new ExceptionInvalidInputGiven();
             }
         }
 
         public bool IsValidCoin(Money oneCoin)
         {
+            if (oneCoin.Euros == 0 && oneCoin.Cents == 0)
+            {
+                throw new ExceptionInvalidCoin();
+            }
+            
             switch(oneCoin.Cents)
             {
                 case 50:
@@ -130,7 +143,7 @@ namespace VendingMachine
                 case 0:
                     break;
                 default:
-                    return false;
+                    throw new ExceptionInvalidCoin();            
             }
 
             switch(oneCoin.Euros)
@@ -139,8 +152,8 @@ namespace VendingMachine
                 case 1:
                 case 0:
                     break;
-                default: 
-                    return false;
+                default:
+                    throw new ExceptionInvalidCoin();            
             }
 
             return true;
@@ -150,19 +163,19 @@ namespace VendingMachine
         {
             if(productToBuy < 0 || productToBuy >= _products.Length)
             {
-                Console.WriteLine("Invalid product ID.");
+                throw new ExceptionInvalidIdReceived();
             }
 
             Product product = _products[productToBuy];
 
             if(product.Available <= 0)
             {
-                return false;
+                throw new ExceptionProductOutOfStock();
             }
 
             if (Amount.Euros < product.Price.Euros || (Amount.Euros == product.Price.Euros && Amount.Cents < product.Price.Cents))
             {
-                return false;
+                throw new ExceptionNotEnoughMoney();
             }
 
             int totalPriceInCents = product.Price.Euros * 100 + product.Price.Cents;
@@ -175,7 +188,7 @@ namespace VendingMachine
             _moneyAmount.Euros = changeEuro;
             _moneyAmount.Cents = changeCents;
             product.Available--;
-
+            
             return true;
         }
     }
