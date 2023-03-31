@@ -1,6 +1,6 @@
 ﻿namespace Hierarchy
 {
-    abstract class Animal
+    public abstract class Animal
     {
         public string AnimalName { get; set; }
         public string AnimalType { get; set; }
@@ -17,6 +17,6 @@
 
         public abstract void MakeSound();
 
-        public abstract void Eat(Food food);
+        public abstract void Eat(Food? food);
     }
 }
