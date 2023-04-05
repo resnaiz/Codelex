@@ -25,9 +25,7 @@ namespace Hierarchy.TestsDone
         [Test]
         public void ZebraEatTest_GiveNullFood_ExceptionNullFoodWasNotEaten()
         {
-            Action act = () => { _zebra.Eat(null); };
-
-            act.Should().Throw<ExceptionNullFoodWasNotEaten>();
+            _zebra.Invoking(c => c.Eat(null)).Should().Throw<ExceptionNullFoodWasNotEaten>();
         }
 
         [Test]

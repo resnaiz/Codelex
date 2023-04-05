@@ -41,7 +41,7 @@ namespace Hierarchy
             Console.WriteLine("Moew!!!");
         }
 
-        public override void Eat(Food? food)
+        public override void Eat(Food food)
         {
             if (food is null)
             {

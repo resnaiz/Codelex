@@ -23,9 +23,7 @@ public class TigerTests
     [Test]
     public void TigerEatTest_GiveNullFood_ExceptionNullFoodWasNotEaten()
     {
-        Action act = () => { _tiger.Eat(null); };
-
-        act.Should().Throw<ExceptionNullFoodWasNotEaten>();
+        _tiger.Invoking(c => c.Eat(null)).Should().Throw<ExceptionNullFoodWasNotEaten>();
     }
 
     [Test]

@@ -23,12 +23,7 @@ namespace Hierarchy.TestsDone
         [Test]
         public void CatEatTest_GiveNullFood_ExceptionNullFoodWasNotEaten()
         {
-            Action act = () =>
-            {
-                _cat.Eat(null);
-            };
-
-            act.Should().Throw<ExceptionNullFoodWasNotEaten>();
+            _cat.Invoking(c => c.Eat(null)).Should().Throw<ExceptionNullFoodWasNotEaten>();
         }
 
         [Test]

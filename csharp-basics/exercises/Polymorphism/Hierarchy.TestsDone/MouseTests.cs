@@ -23,9 +23,7 @@ namespace Hierarchy.TestsDone
         [Test]
         public void MouseEatTest_GiveNullFood_ExceptionNullFoodWasNotEaten()    
         {
-            Action act = () => { _mouse.Eat(null); };
-
-            act.Should().Throw<ExceptionNullFoodWasNotEaten>();
+            _mouse.Invoking(c => c.Eat(null)).Should().Throw<ExceptionNullFoodWasNotEaten>();
         }
 
         [Test]

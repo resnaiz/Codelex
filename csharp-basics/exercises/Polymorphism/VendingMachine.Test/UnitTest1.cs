@@ -416,5 +416,9 @@ public class VendingMachineTests
 
         Assert.Throws<ExceptionProductOutOfStock>(() => vendingMachine.AddProduct(productName, price, productsCount));
     }
+    
+    //hasprod
+    
+    
 }
     

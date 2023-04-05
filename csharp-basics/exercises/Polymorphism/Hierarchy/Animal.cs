@@ -17,6 +17,6 @@
 
         public abstract void MakeSound();
 
-        public abstract void Eat(Food? food);
+        public abstract void Eat(Food food);
     }
 }
