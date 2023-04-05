@@ -52,7 +52,6 @@ namespace VendingMachine
 
         public Money InsertCoin(Money amount)
         {
-            if (!IsValidCoin(amount)) throw new ExceptionInvalidCoin();
             int cents = _moneyAmount.Cents + amount.Cents;
             int euros = _moneyAmount.Euros + amount.Euros + cents / 100;
             cents %= 100;
@@ -127,6 +126,11 @@ namespace VendingMachine
         public bool IsValidCoin(Money oneCoin)
         {
             if (oneCoin.Euros == 0 && oneCoin.Cents == 0)
+            {
+                throw new ExceptionInvalidCoin();
+            }
+
+            if (Math.Sign(oneCoin.Euros | oneCoin.Cents) == -1)
             {
                 throw new ExceptionInvalidCoin();
             }
