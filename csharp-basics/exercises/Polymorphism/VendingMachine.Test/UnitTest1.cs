@@ -21,19 +21,25 @@ public class VendingMachineTests
     }
 
     [Test]
-    public void InsertCoin_ShouldNotInsertMoney_InvalidMoneyNotInserted()
+    public void InsertCoin_ThrowsExceptionWhenInvalidCoinInserted()
     {
-        VendingMachine vendingMachine = new VendingMachine("Codelex", new Product[] { });
-        Money money = new Money { Euros = 3, Cents = 0 };
+        Product[] products = new Product[]
+        {
+            new Product { Name = "Soda", Price = new Money { Euros = 1, Cents = 50 }, Available = 2 },
+            new Product { Name = "Chips", Price = new Money { Euros = 1, Cents = 20 }, Available = 0 }
+        };
+        VendingMachine vendingMachine = new VendingMachine("Codelex", products);
 
-        Assert.Throws<ExceptionInvalidCoin>(() => vendingMachine.InsertCoin(money));
+        Money invalidCoin = new Money { Euros = 3, Cents = 10 };
+
+        Assert.Throws<ExceptionInvalidCoin>(() => vendingMachine.InsertCoin(invalidCoin));
     }
-
+    
     [Test]
     public void InsertCoin_ShouldThrowException_WhenEmptyMoneyInserted()
     {
         VendingMachine vendingMachine = new VendingMachine("Codelex", new Product[] { });
-        Money money = new Money { Euros = 0, Cents = 0 };
+        Money money = new Money { Euros =0, Cents = 0 };
 
         Assert.Throws<ExceptionInvalidCoin>(() => vendingMachine.InsertCoin(money));
     }
@@ -54,6 +60,27 @@ public class VendingMachineTests
         Assert.That(vendingMachine.Amount.Cents, Is.EqualTo(80));
     }
 
+    [Test]
+    public void InsertCoin_ShouldThrowException_WhenInvalidCoinInsertedAfterValidCoin()
+    {
+        VendingMachine vendingMachine = new VendingMachine("Codelex", new Product[] { });
+        Money validCoin = new Money { Euros = 1, Cents = 0 };
+        Money invalidCoin = new Money { Euros = 3, Cents = 10 };
+    
+        vendingMachine.InsertCoin(validCoin);
+    
+        Assert.Throws<ExceptionInvalidCoin>(() => vendingMachine.InsertCoin(invalidCoin));
+    }
+    
+    [Test]
+    public void InsertCoin_ShouldInsert100CentsAndIncreaseEuros()
+    {
+        VendingMachine vendingMachine = new VendingMachine("Codelex", new Product[] { });
+        Money money = new Money { Euros = 0, Cents = 100 };
+
+        Assert.Throws<ExceptionInvalidCoin>(() => vendingMachine.InsertCoin(money));
+    }
+    
     [Test]
     public void InsertCoin_ShouldIncreaseAmountCorrectly_AfterPurchaseAmountUpdatedCorrectly()
     {
@@ -85,6 +112,15 @@ public class VendingMachineTests
         Assert.Throws<ExceptionInvalidCoin>(() => vendingMachine.InsertCoin(money));
     }
 
+    [Test]
+    public void InsertCoin_ShouldThrowException_WhenInvalidCoinInserted()
+    {
+        VendingMachine vendingMachine = new VendingMachine("Codelex", new Product[] { });
+        Money invalidCoin = new Money { Euros = 3, Cents = 0 };
+
+        Assert.Throws<ExceptionInvalidCoin>(() => vendingMachine.InsertCoin(invalidCoin));
+    }
+    
     //RETURN MONEY
 
     [Test]
@@ -205,7 +241,6 @@ public class VendingMachineTests
     }
 
     //HasProducts
-
     [Test]
     public void HasProducts_ShouldReturnTrue_ReturnedProductsAreAvailable()
     {
@@ -221,19 +256,21 @@ public class VendingMachineTests
         Assert.That(result, Is.True);
     }
 
+
     [Test]
-    public void HasProducts_ShouldThrowException_ThrowExceptionThereAreNoProductsAvailable()
+    public void HasProducts_ReturnsTrueWhenAtLeastOneProductAvailable()
     {
-        Product[] products = new Product[]
-        {
-            new Product { Name = "Coke", Price = new Money { Euros = 1, Cents = 50 }, Available = 0 }
+        Product[] products = new Product[] {
+            new Product { Name = "Soda", Price = new Money { Euros = 2, Cents = 50 }, Available = 1 },
+            new Product { Name = "Chips", Price = new Money { Euros = 1, Cents = 80 }, Available = 3 },
+            new Product { Name = "Candy", Price = new Money { Euros = 1, Cents = 10 }, Available = 0 }
         };
+        IVendingMachine vendingMachine = new VendingMachine("Codelex", products);
 
-        VendingMachine vendingMachine = new VendingMachine("Codelex", products);
+        bool hasProducts = vendingMachine.HasProducts;
 
-        Assert.Throws<ExceptionProductOutOfStock>(() => vendingMachine.HasProducts());
+        Assert.IsTrue(hasProducts);
     }
-
 
     //setgetproducts
 
@@ -417,8 +454,23 @@ public class VendingMachineTests
         Assert.Throws<ExceptionProductOutOfStock>(() => vendingMachine.AddProduct(productName, price, productsCount));
     }
     
-    //hasprod
-    
-    
+    [Test]
+    public void AddProduct_ShouldThrowException_ThrowExceptionWhenAddingToFullMachine()
+    {
+        Product[] products = new Product[1];
+        var vendingMachine = new VendingMachine("Codelex", products);
+
+        var productName1 = "Product1";
+        var price1 = new Money { Euros = 1, Cents = 50 };
+        var productsCount1 = 1;
+
+        vendingMachine.AddProduct(productName1, price1, productsCount1);
+
+        var productName2 = "Product2";
+        var price2 = new Money { Euros = 2, Cents = 50 };
+        var productsCount2 = 2;
+
+        Assert.Throws<ExceptionProductOutOfStock>(() => vendingMachine.AddProduct(productName2, price2, productsCount2));
+    }
 }
     

@@ -14,6 +14,7 @@ namespace VendingMachine
         {
             _manufacturerName = manufacturerName;
             _products = products;
+            HasProducts();
         }
 
         public string Manufacturer
@@ -22,18 +23,20 @@ namespace VendingMachine
         }
 
         bool IVendingMachine.HasProducts => _hasProducts;
-
+        
         public bool HasProducts()
         {
-            foreach(Product product in _products)
+            foreach (Product product in _products)
             {
-                if(product.Available > 0)
+                if (product.Available > 0)
                 {
+                    _hasProducts = true;
                     return true;
                 }
             }
-
-            throw new ExceptionProductOutOfStock();
+    
+            _hasProducts = false;
+            return false;
         }
 
         public Money Amount
@@ -49,19 +52,12 @@ namespace VendingMachine
 
         public Money InsertCoin(Money amount)
         {
-            if (IsValidCoin(amount))
-            {
-                int cents = _moneyAmount.Cents + amount.Cents;
-                int euros = _moneyAmount.Euros + amount.Euros + cents / 100;
-                cents %= 100;
-                _moneyAmount.Euros = euros;
-                _moneyAmount.Cents = cents;
-            }
-            else
-            {
-                throw new ExceptionInvalidCoin();
-            }
-            
+            if (!IsValidCoin(amount)) throw new ExceptionInvalidCoin();
+            int cents = _moneyAmount.Cents + amount.Cents;
+            int euros = _moneyAmount.Euros + amount.Euros + cents / 100;
+            cents %= 100;
+            _moneyAmount.Euros = euros;
+            _moneyAmount.Cents = cents;
             return _moneyAmount;
         }
 
