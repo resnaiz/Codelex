@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ListExercise11
 {
@@ -10,19 +7,42 @@ namespace ListExercise11
     {
         static void Main(string[] args)
         {
-            //TODO: Create an List with string elements
+            List<string> listForTeams = new List<string>
+            {
+                { "FC Barcelona" },
+                { "Real Madrid" },
+                { "Atletico Madrid" },
+                { "Valencia" },
+                { "Espanyol" },
+                { "Real Betis" },
+                { "Celta" },
+                { "Sevilla" },
+                { "Villarreal" },
+                { "Girona" }
+            };
 
-            //TODO: Add 10 values to list
+            listForTeams.Insert(4, "Betis");
+            int lastPos = listForTeams.Count - 1;
+            listForTeams[lastPos] = "Real Sociedad";
+            listForTeams.Sort();
 
-            //TODO: Add new value at 5th position
+            if(listForTeams.Contains("Foobar")) 
+            {
+                Console.WriteLine("Contains!");
+            }
+            else
+            {
+                Console.WriteLine("Element not found!");
+            }
 
-            //TODO: Change value at last position (Calculate last position programmatically)
+            Console.WriteLine();
 
-            //TODO: Sort your list in alphabetical order
+            for(int i = 0; i < listForTeams.Count; i++)
+            {
+                Console.WriteLine(listForTeams[i]);
+            }
 
-            //TODO: Check if your list contains "Foobar" element
-
-            //TODO: Print each element of list using loop
+            Console.WriteLine();
         }
     }
 }

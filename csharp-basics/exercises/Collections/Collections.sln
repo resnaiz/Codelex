@@ -33,15 +33,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListExercise11", "ListExerc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Linq", "Linq", "{A112C9BA-10AD-4D4E-A7D8-C4F6753A6215}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaysNames", "DaysNames\DaysNames.csproj", "{6F9D2B56-2257-40B9-AD37-49508E033757}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DaysNames", "DaysNames\DaysNames.csproj", "{6F9D2B56-2257-40B9-AD37-49508E033757}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbersFromRange", "NumbersFromRange\NumbersFromRange.csproj", "{C82B6E7E-DA20-43DE-922C-BF288660188E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumbersFromRange", "NumbersFromRange\NumbersFromRange.csproj", "{C82B6E7E-DA20-43DE-922C-BF288660188E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecryptNumber", "DecryptNumber\DecryptNumber.csproj", "{B332A2F2-F418-4FEA-A89E-8408EF27438D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DecryptNumber", "DecryptNumber\DecryptNumber.csproj", "{B332A2F2-F418-4FEA-A89E-8408EF27438D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReplaceSubstring", "ReplaceSubstring\ReplaceSubstring.csproj", "{95866E02-CF89-4230-8939-D7E832804676}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReplaceSubstring", "ReplaceSubstring\ReplaceSubstring.csproj", "{95866E02-CF89-4230-8939-D7E832804676}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniqueValues", "UniqueValues\UniqueValues.csproj", "{0C3C99BF-7B23-4573-B285-2FAE43DA51FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniqueValues", "UniqueValues\UniqueValues.csproj", "{0C3C99BF-7B23-4573-B285-2FAE43DA51FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "exercise 4", "exercise 4\exercise 4.csproj", "{B8B17960-35D9-4859-B1F6-4016443119E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "exercise 5", "exercise 5\exercise 5.csproj", "{3D6D0D46-5B38-4FFC-A440-1655391BA298}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "exercise 10", "exercise 10\exercise 10.csproj", "{8529D400-D5FC-45D8-9B9F-587DEE2B2CD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -121,6 +127,18 @@ Global
 		{0C3C99BF-7B23-4573-B285-2FAE43DA51FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C3C99BF-7B23-4573-B285-2FAE43DA51FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C3C99BF-7B23-4573-B285-2FAE43DA51FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8B17960-35D9-4859-B1F6-4016443119E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8B17960-35D9-4859-B1F6-4016443119E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8B17960-35D9-4859-B1F6-4016443119E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8B17960-35D9-4859-B1F6-4016443119E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D6D0D46-5B38-4FFC-A440-1655391BA298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D6D0D46-5B38-4FFC-A440-1655391BA298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D6D0D46-5B38-4FFC-A440-1655391BA298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D6D0D46-5B38-4FFC-A440-1655391BA298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8529D400-D5FC-45D8-9B9F-587DEE2B2CD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8529D400-D5FC-45D8-9B9F-587DEE2B2CD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8529D400-D5FC-45D8-9B9F-587DEE2B2CD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8529D400-D5FC-45D8-9B9F-587DEE2B2CD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

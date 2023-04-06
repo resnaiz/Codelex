@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VideoStore
 {
     class Program
     {
         private const int _countOfMovies = 3;
-        private static VideoStore _videoStore = new VideoStore();
+        private static VideoStore _videoStore = new VideoStore("Example", 0);
         private static void Main(string[] args)
         {
             while (true)

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ListExercise3
 {
@@ -10,21 +7,24 @@ namespace ListExercise3
     {
         static void Main(string[] args)
         {
-            //TODO: Write a C# program to insert an element into the array list at the first position.
+            List<string> colors = new List<string>();
 
-            var colors = new List<string>();
             colors.Add("Red");
             colors.Add("Green");
             colors.Add("Orange");
             colors.Add("White");
             colors.Add("Black");
 
+            Console.WriteLine("List without any changes: ");
             Console.WriteLine(string.Join(",", colors));
+            Console.WriteLine();
 
-            //TODO: Add new color at the first and third position of the list
+            colors.Insert(0, "Blue");
+            colors.Insert(2, "Pink");
 
-            //Print the list
+            Console.WriteLine("Changed list:");
             Console.WriteLine(string.Join(",", colors));
+            Console.WriteLine();
         }
     }
 }
