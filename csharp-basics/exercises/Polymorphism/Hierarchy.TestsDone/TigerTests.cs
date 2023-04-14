@@ -23,16 +23,16 @@ public class TigerTests
     [Test]
     public void TigerEatTest_GiveNullFood_ExceptionNullFoodWasNotEaten()
     {
-        _tiger.Invoking(c => c.Eat(null)).Should().Throw<ExceptionNullFoodWasNotEaten>();
+        _tiger.Invoking(c => c.Eat(null)).Should().Throw<NullValueException>();
     }
 
     [Test]
-    public void TigerEatTest_GiveIncorrectFood_ExceptionIncorrectFoodWasNotEat()
+    public void TigerEatTest_GiveIncorrectFood_ThrowsIncorrectFoodReceived()
     {
         var tiger = new Tiger("Tiger", "Kyle", 0.2, 0, "Europa");
         var food = new Vegetable(0);
 
-        Assert.Throws<ExceptionIncorrectFoodWasNotEat>(() => tiger.Eat(food));
+        Assert.Throws<IncorrectFoodException>(() => tiger.Eat(food));
     }
 
     [Test]
@@ -46,15 +46,15 @@ public class TigerTests
 
         Tiger tiger = new Tiger(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-        Assert.AreEqual(animalType, tiger.AnimalType);
-        Assert.AreEqual(animalName, tiger.AnimalName);
-        Assert.AreEqual(animalWeight, tiger.AnimalWeight);
-        Assert.AreEqual(foodEaten, tiger.FoodEaten);
-        Assert.AreEqual(livingRegion, tiger.LivingRegion);
+        Assert.That(tiger.AnimalType, Is.EqualTo(animalType));
+        Assert.That(tiger.AnimalName, Is.EqualTo(animalName));
+        Assert.That(tiger.AnimalWeight, Is.EqualTo(animalWeight));
+        Assert.That(tiger.FoodEaten, Is.EqualTo(foodEaten));
+        Assert.That(tiger.LivingRegion, Is.EqualTo(livingRegion));
     }
 
     [Test]
-    public void TigerConstructorTest_GiveIncorrectDataForAnimalWeight_ReceivedIncorrectDataForAnimalWeight()
+    public void TigerConstructorTest_GiveIncorrectDataForAnimalWeight_ThrowsIncorrectDataReceived()
     {
         string animalType = "Tiger";
         string animalName = "Lee";
@@ -64,11 +64,11 @@ public class TigerTests
 
         Action act = () => new Tiger(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-        act.Should().Throw<ExceptionIncorrectDataReceived>();
+        act.Should().Throw<IncorrectDataException>();
     }
         
     [Test]
-    public void TigerConstructorTest_GiveIncorrectDataForFoodEaten_ReceivedIncorrectDataForFoodEaten()
+    public void TigerConstructorTest_GiveIncorrectDataForFoodEaten_ThrowsIncorrectDataReceived()
     {
         string animalType = "Tiger";
         string animalName = "Lee";
@@ -78,11 +78,11 @@ public class TigerTests
 
         Action act = () => new Tiger(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-        act.Should().Throw<ExceptionIncorrectDataReceived>();
+        act.Should().Throw<IncorrectDataException>();
     }
         
     [Test]
-    public void TigerConstructorTest_GiveEmptyAnimalType_ReceivedEmptyAnimalType()
+    public void TigerConstructorTest_GiveEmptyAnimalType_ThrowsIncorrectDataReceived()
     {
         string animalType = "";
         string animalName = "Lee";
@@ -92,11 +92,11 @@ public class TigerTests
 
         Action act = () => new Tiger(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-        act.Should().Throw<ExceptionIncorrectDataReceived>();
+        act.Should().Throw<IncorrectDataException>();
     }
         
     [Test]
-    public void TigerConstructorTest_GiveEmptyAnimalName_ReceivedEmptyAnimalName()
+    public void TigerConstructorTest_GiveEmptyAnimalName_ThrowsIncorrectDataReceived()
     {
         string animalType = "Tiger";
         string animalName = "";
@@ -106,11 +106,11 @@ public class TigerTests
 
         Action act = () => new Tiger(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-        act.Should().Throw<ExceptionIncorrectDataReceived>();
+        act.Should().Throw<IncorrectDataException>();
     }
         
     [Test]
-    public void TigerConstructorTest_GiveEmptyLivingRegion_ReceivedEmptyLivingRegion()
+    public void TigerConstructorTest_GiveEmptyLivingRegion_ThrowsIncorrectDataReceived()
     {
         string animalType = "Tiger";
         string animalName = "Lee";
@@ -120,6 +120,6 @@ public class TigerTests
 
         Action act = () => new Tiger(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-        act.Should().Throw<ExceptionIncorrectDataReceived>();
+        act.Should().Throw<IncorrectDataException>();
     }
 }

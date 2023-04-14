@@ -10,27 +10,27 @@ namespace Hierarchy
         {
             if (string.IsNullOrEmpty(animalType))
             {
-                throw new ExceptionIncorrectDataReceived();
+                throw new IncorrectDataException();
             }
             if (string.IsNullOrEmpty(animalName))   
             {
-                throw new ExceptionIncorrectDataReceived();
+                throw new IncorrectDataException();
             }
             if (animalWeight <= 0)
             {
-                throw new ExceptionIncorrectDataReceived();
+                throw new IncorrectDataException();
             }
             if (foodEaten < 0)
             {
-                throw new ExceptionIncorrectDataReceived();
+                throw new IncorrectDataException();
             }
             if (string.IsNullOrEmpty(livingRegion))
             {
-                throw new ExceptionIncorrectDataReceived();
+                throw new IncorrectDataException();
             }
             if (string.IsNullOrEmpty(breed))
             {
-                throw new ExceptionIncorrectDataReceived();
+                throw new IncorrectDataException();
             }
             
             this.Breed = breed;
@@ -45,7 +45,7 @@ namespace Hierarchy
         {
             if (food is null)
             {
-                throw new ExceptionNullFoodWasNotEaten();
+                throw new NullValueException();
             }
             else
             {

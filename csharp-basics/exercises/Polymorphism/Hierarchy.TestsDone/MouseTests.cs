@@ -21,9 +21,9 @@ namespace Hierarchy.TestsDone
         }
 
         [Test]
-        public void MouseEatTest_GiveNullFood_ExceptionNullFoodWasNotEaten()    
+        public void MouseEatTest_GiveNullFood_ThrowsNullValueReceived()    
         {
-            _mouse.Invoking(c => c.Eat(null)).Should().Throw<ExceptionNullFoodWasNotEaten>();
+            _mouse.Invoking(c => c.Eat(null)).Should().Throw<NullValueException>();
         }
 
         [Test]
@@ -32,7 +32,7 @@ namespace Hierarchy.TestsDone
             var mouse = new Mouse("Mouse", "Kyle", 0.2, 0, "Europa");
             var food = new Meat(0);
 
-            Assert.Throws<ExceptionIncorrectFoodWasNotEat>(() => mouse.Eat(food));
+            Assert.Throws<IncorrectFoodException>(() => mouse.Eat(food));
         }
 
         [Test]
@@ -46,15 +46,15 @@ namespace Hierarchy.TestsDone
 
             Mouse mouse = new Mouse(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-            Assert.AreEqual(animalType, mouse.AnimalType);
-            Assert.AreEqual(animalName, mouse.AnimalName);
-            Assert.AreEqual(animalWeight, mouse.AnimalWeight);
-            Assert.AreEqual(foodEaten, mouse.FoodEaten);
-            Assert.AreEqual(livingRegion, mouse.LivingRegion);
+            Assert.That(mouse.AnimalType, Is.EqualTo(animalType));
+            Assert.That(mouse.AnimalName, Is.EqualTo(animalName));
+            Assert.That(mouse.AnimalWeight, Is.EqualTo(animalWeight));
+            Assert.That(mouse.FoodEaten, Is.EqualTo(foodEaten));
+            Assert.That(mouse.LivingRegion, Is.EqualTo(livingRegion));
         }
 
         [Test]
-        public void MouseConstructorTest_GiveIncorrectData_ReceivedIncorrectData()
+        public void MouseConstructorTest_GiveIncorrectData_ThrowsIncorrectDataReceived()
         {
             string animalType = "Mouse";
             string animalName = "Lee";
@@ -64,11 +64,11 @@ namespace Hierarchy.TestsDone
 
             Action act = () => new Mouse(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
         
         [Test]
-        public void MouseConstructorTest_GiveIncorrectDataForFoodEaten_ReceivedIncorrectDataForFoodEaten()
+        public void MouseConstructorTest_GiveIncorrectDataForFoodEaten_ThrowsIncorrectDataReceived()
         {
             string animalType = "Test";
             string animalName = "Lee";
@@ -78,11 +78,11 @@ namespace Hierarchy.TestsDone
 
             Action act = () => new Mouse(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
 
         [Test]
-        public void MouseConstructorTest_GiveEmptyAnimalName_ReceivedEmptyDataForAnimalName()
+        public void MouseConstructorTest_GiveEmptyAnimalName_ThrowsIncorrectDataReceived()
         {
             string animalType = "Test";
             string animalName = "";
@@ -92,11 +92,11 @@ namespace Hierarchy.TestsDone
 
             Action act = () => new Mouse(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
 
         [Test]
-        public void MouseConstructorTest_GiveEmptyLivingRegion_ReceivedEmptyDataForLivingRegion()
+        public void MouseConstructorTest_GiveEmptyLivingRegion_ThrowsIncorrectDataReceived()
         {
             string animalType = "Test";
             string animalName = "Test2";
@@ -106,11 +106,11 @@ namespace Hierarchy.TestsDone
 
             Action act = () => new Mouse(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
         
         [Test]
-        public void MouseConstructorTest_GiveEmptyAnimalType_ReceivedEmptyDataForAnimalType()
+        public void MouseConstructorTest_GiveEmptyAnimalType_ThrowsIncorrectDataReceived()
         {
             string animalType = "";
             string animalName = "Lee";
@@ -120,7 +120,7 @@ namespace Hierarchy.TestsDone
 
             Action act = () => new Mouse(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
     }
 }    

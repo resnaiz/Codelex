@@ -23,18 +23,18 @@ namespace Hierarchy.TestsDone
         }
 
         [Test]
-        public void ZebraEatTest_GiveNullFood_ExceptionNullFoodWasNotEaten()
+        public void ZebraEatTest_GiveNullFood_ThrowsExceptionNullFood()
         {
-            _zebra.Invoking(c => c.Eat(null)).Should().Throw<ExceptionNullFoodWasNotEaten>();
+            _zebra.Invoking(c => c.Eat(null)).Should().Throw<NullValueException>();
         }
 
         [Test]
-        public void ZebraEatTest_GiveIncorrectFood_ExceptionIncorrectFoodWasNotEat()
+        public void ZebraEatTest_GiveIncorrectFood_ThrowsExceptionIncorrectFood()
         {
             var zebra = new Zebra("Zebra", "Kyle", 0.2, 0, "Europa");
             var food = new Meat(0);
 
-            Assert.Throws<ExceptionIncorrectFoodWasNotEat>(() => zebra.Eat(food));
+            Assert.Throws<IncorrectFoodException>(() => zebra.Eat(food));
         }
 
         [Test]
@@ -48,15 +48,15 @@ namespace Hierarchy.TestsDone
 
             Zebra zebra = new Zebra(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-            Assert.AreEqual(animalType, zebra.AnimalType);
-            Assert.AreEqual(animalName, zebra.AnimalName);
-            Assert.AreEqual(animalWeight, zebra.AnimalWeight);
-            Assert.AreEqual(foodEaten, zebra.FoodEaten);
-            Assert.AreEqual(livingRegion, zebra.LivingRegion);
+            Assert.That(zebra.AnimalType, Is.EqualTo(animalType));
+            Assert.That(zebra.AnimalName, Is.EqualTo(animalName));
+            Assert.That(zebra.AnimalWeight, Is.EqualTo(animalWeight));
+            Assert.That(zebra.FoodEaten, Is.EqualTo(foodEaten));
+            Assert.That(zebra.LivingRegion, Is.EqualTo(livingRegion));
         }
 
         [Test]
-        public void ZebraConstructorTest_GiveIncorrectData_ReceivedIncorrectData()
+        public void ZebraConstructorTest_GiveIncorrectData_ThrowsIncorrectDataReceived()
         {
             string animalType = "Zebra";
             string animalName = "Lee";
@@ -66,11 +66,11 @@ namespace Hierarchy.TestsDone
 
             Action act = () => new Zebra(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
         
         [Test]
-        public void ZebraConstructorTest_GiveIncorrectDataForFoodEaten_ReceivedIncorrectDataForFoodEaten()
+        public void ZebraConstructorTest_GiveIncorrectDataForFoodEaten_ThrowsIncorrectDataReceived()
         {
             string animalType = "Zebra";
             string animalName = "Lee";
@@ -80,11 +80,11 @@ namespace Hierarchy.TestsDone
 
             Action act = () => new Zebra(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
         
         [Test]
-        public void ZebraConstructorTest_GiveEmptyAnimalType_ReceivedEmptyAnimalType()
+        public void ZebraConstructorTest_GiveEmptyAnimalType_ThrowsIncorrectDataReceived()
         {
             string animalType = "";
             string animalName = "Lee";
@@ -94,11 +94,11 @@ namespace Hierarchy.TestsDone
 
             Action act = () => new Zebra(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
         
         [Test]
-        public void ZebraConstructorTest_GiveEmptyAnimalName_ReceivedEmptyAnimalName()
+        public void ZebraConstructorTest_GiveEmptyAnimalName_ThrowsIncorrectDataReceived()
         {
             string animalType = "Zebra";
             string animalName = "";
@@ -108,11 +108,11 @@ namespace Hierarchy.TestsDone
 
             Action act = () => new Zebra(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
         
         [Test]
-        public void ZebraConstructorTest_GiveEmptyLivingRegion_ReceivedEmptyLivingRegion()
+        public void ZebraConstructorTest_GiveEmptyLivingRegion_ThrowsIncorrectDataReceived()
         {
             string animalType = "Zebra";
             string animalName = "test";
@@ -122,7 +122,7 @@ namespace Hierarchy.TestsDone
 
             Action act = () => new Zebra(animalType, animalName, animalWeight, foodEaten, livingRegion);
 
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
     }
 }    

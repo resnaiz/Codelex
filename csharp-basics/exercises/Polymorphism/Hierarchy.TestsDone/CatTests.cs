@@ -21,9 +21,9 @@ namespace Hierarchy.TestsDone
         }
 
         [Test]
-        public void CatEatTest_GiveNullFood_ExceptionNullFoodWasNotEaten()
+        public void CatEatTest_GiveNullFood_ThrowsExceptionNullFoodWasNotEaten()
         {
-            _cat.Invoking(c => c.Eat(null)).Should().Throw<ExceptionNullFoodWasNotEaten>();
+            _cat.Invoking(c => c.Eat(null)).Should().Throw<NullValueException>();
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace Hierarchy.TestsDone
         }
 
         [Test]
-        public void CatConstructorTest_GiveIncorrectData_ReceivedIncorrectData()
+        public void CatConstructorTest_GiveIncorrectData_ThrowsIncorrectDataReceived()
         {
             string animalType = "Cat";
             string animalName = "Whiskers";
@@ -58,11 +58,11 @@ namespace Hierarchy.TestsDone
             
             Action act = () => new Cat(animalType, animalName, animalWeight, foodEaten, livingRegion, breed);
             
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
         
         [Test]
-        public void CatConstructorTest_GiveEmptyBreed_ReceivedIncorrectData()
+        public void CatConstructorTest_GiveEmptyBreed_ThrowsIncorrectDataReceived()
         {
             string animalType = "Felime";
             string animalName = "Whiskers";
@@ -73,11 +73,11 @@ namespace Hierarchy.TestsDone
             
             Action act = () => new Cat(animalType, animalName, animalWeight, foodEaten, livingRegion, breed);
 
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
         
         [Test]
-        public void CatConstructorTest_GiveNullableData_ReceivedIncorrectData()
+        public void CatConstructorTest_GiveNullableData_ThrowsIncorrectDataReceived()
         {
             string animalType = null;
             string animalName = null;
@@ -88,11 +88,11 @@ namespace Hierarchy.TestsDone
             
             Action act = () => new Cat(animalType, animalName, animalWeight, foodEaten, livingRegion, breed);
 
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
         
         [Test]
-        public void CatConstructorTest_GiveIncorrectFoodEaten_ReceivedIncorrectDataForFoodEaten()
+        public void CatConstructorTest_GiveIncorrectFoodEaten_ThrowsIncorrectDataReceived()
         {
             string animalType = "Cat";
             string animalName = "Whiskers";
@@ -103,11 +103,11 @@ namespace Hierarchy.TestsDone
             
             Action act = () => new Cat(animalType, animalName, animalWeight, foodEaten, livingRegion, breed);
             
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
         
         [Test]
-        public void CatConstructorTest_GiveEmptyAnimalType_ReceivedIncorrectDataForAnimalType()
+        public void CatConstructorTest_GiveEmptyAnimalType_ThrowsIncorrectDataReceived()
         {
             string animalType = "";
             string animalName = "Whiskers";
@@ -118,11 +118,11 @@ namespace Hierarchy.TestsDone
             
             Action act = () => new Cat(animalType, animalName, animalWeight, foodEaten, livingRegion, breed);
             
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
         
         [Test]
-        public void CatConstructorTest_GiveEmptyAnimalName_ReceivedIncorrectDataForAnimalName()
+        public void CatConstructorTest_GiveEmptyAnimalName_ThrowsIncorrectDataReceived()
         {
             string animalType = "Test";
             string animalName = "";
@@ -133,11 +133,11 @@ namespace Hierarchy.TestsDone
             
             Action act = () => new Cat(animalType, animalName, animalWeight, foodEaten, livingRegion, breed);
             
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
         
         [Test]
-        public void CatConstructorTest_GiveEmptyLivingRegion_ReceivedIncorrectDataForLivingRegion()
+        public void CatConstructorTest_GiveEmptyLivingRegion_ThrowsIncorrectDataReceived()
         {
             string animalType = "Test";
             string animalName = "Whiskers";
@@ -148,7 +148,7 @@ namespace Hierarchy.TestsDone
             
             Action act = () => new Cat(animalType, animalName, animalWeight, foodEaten, livingRegion, breed);
             
-            act.Should().Throw<ExceptionIncorrectDataReceived>();
+            act.Should().Throw<IncorrectDataException>();
         }
     } 
 }
