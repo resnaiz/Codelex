@@ -1,6 +1,6 @@
 ﻿namespace Hierarchy
 {
-    abstract class Mammal : Animal
+    public abstract class Mammal : Animal
     {
         public string LivingRegion { get; set; }
 

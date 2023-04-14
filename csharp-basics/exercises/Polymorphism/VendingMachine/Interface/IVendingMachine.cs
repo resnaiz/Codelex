@@ -17,5 +17,6 @@
         bool UpdateProduct(int productNumber, string name, Money? price, int amount);
 
         bool Buy(int productNumber);
+        bool IsValidCoin(Money oneCoin);
     }
 }
