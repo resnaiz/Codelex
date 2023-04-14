@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualBasic.CompilerServices;
 
 namespace VendingMachine
@@ -14,7 +15,6 @@ namespace VendingMachine
         {
             _manufacturerName = manufacturerName;
             _products = products;
-            HasProducts();
         }
 
         public string Manufacturer
@@ -22,22 +22,7 @@ namespace VendingMachine
             get { return _manufacturerName; }
         }
 
-        bool IVendingMachine.HasProducts => _hasProducts;
-        
-        public bool HasProducts()
-        {
-            foreach (Product product in _products)
-            {
-                if (product.Available > 0)
-                {
-                    _hasProducts = true;
-                    return true;
-                }
-            }
-    
-            _hasProducts = false;
-            return false;
-        }
+        bool IVendingMachine.HasProducts => Products.Any(p => p.Available > 0);
 
         public Money Amount
         {
@@ -71,7 +56,7 @@ namespace VendingMachine
         {
             if(price.Euros < 0 || price.Cents < 0 || price.Cents >= 100)
             {
-                throw new ExceptionInvalidPriceFound();
+                throw new InvalidPriceException();
             }
             
             return true; 
@@ -81,7 +66,7 @@ namespace VendingMachine
         {
             if (string.IsNullOrWhiteSpace(productName) || productsCount <= 0 || !ValidatePrice(price))
             {
-                throw new ExceptionInvalidInputGivenAddProducts();
+                throw new InvalidInputException();
             }
             
             for (int i = 0; i < _products.Length; i++)
@@ -93,7 +78,7 @@ namespace VendingMachine
                 }
             }
 
-            throw new ExceptionProductOutOfStock();
+            throw new ProductOutOfStockException();
         }
 
         public bool UpdateProduct(int oneProduct, string productName, Money? price, int amount)
@@ -119,7 +104,7 @@ namespace VendingMachine
             }
             else
             {
-                throw new ExceptionInvalidInputGiven();
+                throw new InvalidInputException();
             }
         }
 
@@ -127,12 +112,12 @@ namespace VendingMachine
         {
             if (oneCoin.Euros == 0 && oneCoin.Cents == 0)
             {
-                throw new ExceptionInvalidCoin();
+                throw new InvalidCoinException();
             }
 
             if (Math.Sign(oneCoin.Euros | oneCoin.Cents) == -1)
             {
-                throw new ExceptionInvalidCoin();
+                throw new InvalidCoinException();
             }
             
             switch(oneCoin.Cents)
@@ -143,7 +128,7 @@ namespace VendingMachine
                 case 0:
                     break;
                 default:
-                    throw new ExceptionInvalidCoin();            
+                    throw new InvalidCoinException();            
             }
 
             switch(oneCoin.Euros)
@@ -153,7 +138,7 @@ namespace VendingMachine
                 case 0:
                     break;
                 default:
-                    throw new ExceptionInvalidCoin();            
+                    throw new InvalidCoinException();            
             }
 
             return true;
@@ -163,19 +148,19 @@ namespace VendingMachine
         {
             if(productToBuy < 0 || productToBuy >= _products.Length)
             {
-                throw new ExceptionInvalidIdReceived();
+                throw new InvalidIdException();
             }
 
             Product product = _products[productToBuy];
 
             if(product.Available <= 0)
             {
-                throw new ExceptionProductOutOfStock();
+                throw new ProductOutOfStockException();
             }
 
             if (Amount.Euros < product.Price.Euros || (Amount.Euros == product.Price.Euros && Amount.Cents < product.Price.Cents))
             {
-                throw new ExceptionNotEnoughMoney();
+                throw new NotEnoughMoneyException();
             }
 
             int totalPriceInCents = product.Price.Euros * 100 + product.Price.Cents;
